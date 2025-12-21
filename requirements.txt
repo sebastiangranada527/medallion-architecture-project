@@ -1,0 +1,8 @@
+pandas
+faker
+numpy
+pyspark
+scikit-learn
+matplotlib
+apache-airflow
+# Agregaremos más si es necesario en etapas posteriores
