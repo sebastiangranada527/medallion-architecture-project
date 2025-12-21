@@ -1,5 +1,6 @@
 # Byte-compiled / optimized / DLL files
 __pycache__/
+*.parquet
 *.py[codz]
 *$py.class
 
