@@ -28,7 +28,15 @@ medallion-architecture-project/
 │   └── data/
 │       └── bronze/
 │           └── sales_raw.parquet (generado)
-├── etapa3-silver-gold/             # (En progreso)
+├── etapa3-silver-gold/             # Capas Silver y Gold: limpieza y tablas curadas
+│   ├── notebooks/
+│   │   └── 03_capas_silver_gold.ipynb
+│   └── data/
+│       ├── silver/
+│       │   └── sales_clean.parquet
+│       └── gold/
+│           ├── sales_fact_daily.parquet
+│           └── sales_fact_product_store.parquet
 ├── etapa4-optimizaciones/          # (Pendiente)
 ├── etapa5-deployment/              # (Pendiente)
 ├── data/                           # Datos generados (no commiteados por .gitignore)
@@ -42,9 +50,9 @@ medallion-architecture-project/
 |-------|--------------|---------------------------------------------------------------------------------------|
 | 1     | ✅ Completada | Generación de datos simulados (ventas minoristas) y exploración inicial (Pandas)     |
 | 2     | ✅ Completada | Capa Bronze: ingesta cruda con PySpark, almacenamiento en Parquet, simulación de late-arriving data |
-| 3     | En progreso  | Capas Silver y Gold: limpieza, estandarización y creación de tablas curadas          |
+| 3     | ✅ Completada | Capas Silver y Gold: limpieza, estandarización y creación de tablas curadas (revenue diario, por producto/tienda) |
 | 4     | Pendiente    | Optimizaciones, feature engineering y modelado ML básico                             |
-| 5     | Pendiente    | Orquestación con Airflow y preparación para deployment                               |
+| 5     | Pendiente    | Orquestación con Airflow y preparación para deployment
 
 ## Instalación y ejecución
 
@@ -53,4 +61,58 @@ medallion-architecture-project/
 git clone https://github.com/sebastiangranada527/medallion-architecture-project.git
 cd medallion-architecture-project
 
+### 2. Crear y activar entorno virtual
+```bash
+python -m venv venv
+source venv/bin/activate          # Linux/Mac
+# o
+venv\Scripts\activate             # Windows
 
+
+## Instalar dependencias
+
+pip install -r requirements.txt
+
+## Ejecutar las etapas existentes
+### Etapa 1 – Generación y exploración de datos simulados:
+
+jupyter notebook etapa1-fundamentos/notebooks/01_generacion_y_exploracion_datos.ipynb
+
+Genera 5,000 filas de ventas minoristas simuladas (con Faker).
+Explora inconsistencias reales (e.g., store_id con formatos variados).
+Crea visualizaciones básicas con Matplotlib.
+
+### Etapa 2 – Capa Bronze:
+
+jupyter notebook etapa2-bronze/notebooks/02_capa_bronze.ipynb
+
+Lee el CSV crudo generado en Etapa 1.
+Almacena los datos sin ninguna transformación en formato Parquet.
+Simula "late-arriving data" (datos que llegan tarde) y los agrega en modo append.
+Verifica integridad y trazabilidad.
+
+### Etapa 3 – Capas Silver y Gold:
+
+jupyter notebook etapa3-silver-gold/notebooks/03_capas_silver_gold.ipynb
+
+Silver: Limpieza y estandarización (normaliza store_id, maneja nulos, filtra corruptos).
+Gold: Crea tablas curadas (revenue diario, métricas por producto y tienda).
+Visualiza revenue diario para validar el resultado.
+
+Nota: Ejecuta las etapas en orden (1 → 2 → 3
+
+Tareas realizadas hasta ahora
+
+Generación de datos simulados realistas con inconsistencias intencionales.
+Capa Bronze: ingesta cruda, almacenamiento eficiente, soporte para datos tardíos.
+Capa Silver: limpieza y estandarización de datos.
+Capa Gold: creación de tablas curadas y métricas de negocio.
+Documentación detallada en notebooks y README.
+Uso de Git con commits atómicos y mensajes claros.
+
+Próximos pasos
+
+Etapa 4: Optimizaciones de rendimiento, feature engineering y modelado ML básico (e.g., predicción de churn o ventas).
+Etapa 5: Orquestación con Apache Airflow y preparación para deployment (AWS/GCP free tier).
+
+¡Contribuciones y feedback son bienvenidos
