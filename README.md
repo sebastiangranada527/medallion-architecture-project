@@ -37,7 +37,10 @@ medallion-architecture-project/
 │       └── gold/
 │           ├── sales_fact_daily.parquet
 │           └── sales_fact_product_store.parquet
-├── etapa4-optimizaciones/          # (Pendiente)
+├── etapa4-optimizaciones/          # Optimizaciones, EDA y Machine Learning
+│   ├── notebooks/
+│   │   └── 04_optimizaciones_y_ml.ipynb
+│   └── data/                       # (opcional: particiones o datos adicionales)
 ├── etapa5-deployment/              # (Pendiente)
 ├── data/                           # Datos generados (no commiteados por .gitignore)
 ├── docs/                           # Documentación adicional (diagramas, notas)
@@ -51,7 +54,7 @@ medallion-architecture-project/
 | 1     | ✅ Completada | Generación de datos simulados (ventas minoristas) y exploración inicial (Pandas)     |
 | 2     | ✅ Completada | Capa Bronze: ingesta cruda con PySpark, almacenamiento en Parquet, simulación de late-arriving data |
 | 3     | ✅ Completada | Capas Silver y Gold: limpieza, estandarización y creación de tablas curadas (revenue diario, por producto/tienda) |
-| 4     | Pendiente    | Optimizaciones, feature engineering y modelado ML básico                             |
+| 4     | ✅ Completada | Optimizaciones de rendimiento, EDA, feature engineering y modelo de churn básico con Random Forest |
 | 5     | Pendiente    | Orquestación con Airflow y preparación para deployment
 
 ## Instalación y ejecución
@@ -112,7 +115,27 @@ Uso de Git con commits atómicos y mensajes claros.
 
 Próximos pasos
 
-Etapa 4: Optimizaciones de rendimiento, feature engineering y modelado ML básico (e.g., predicción de churn o ventas).
-Etapa 5: Orquestación con Apache Airflow y preparación para deployment (AWS/GCP free tier).
 
-¡Contribuciones y feedback son bienvenidos
+### 4. Ejecutar las etapas existentes
+4. **Etapa 4** – Optimizaciones y Machine Learning:
+   ```bash
+   jupyter notebook etapa4-optimizaciones/notebooks/04_optimizaciones_y_ml.ipynb
+
+Escala datos agregando filas adicionales a Silver (simulación de crecimiento).
+Optimiza rendimiento: cacheo de DataFrames y particionamiento por fecha.
+Análisis exploratorio avanzado (EDA) con Pandas/Seaborn.
+Feature engineering para clientes: total gastado, número de compras, días desde última compra.
+Modelo de clasificación de churn con Random Forest (incluye métricas: classification report y ROC AUC).
+
+Tareas realizadas en Etapa 4
+
+Escalado de datos para simular volúmenes mayores.
+Optimización de consultas Spark (cache y particionamiento).
+Análisis exploratorio detallado y visualización de patrones.
+Feature engineering a nivel cliente.
+Entrenamiento y evaluación de modelo de predicción de churn (Random Forest).
+Transición clara de rol Data Engineer a Data Scientist dentro del mismo pipeline Medallion.
+
+Próximos pasos
+
+Etapa 5: Orquestación del pipeline completo con Apache Airflow y preparación para deployment en cloud (AWS/GCP free tier).

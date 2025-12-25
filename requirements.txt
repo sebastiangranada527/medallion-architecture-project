@@ -4,5 +4,6 @@ numpy
 pyspark
 scikit-learn
 matplotlib
+seaborn
 apache-airflow
 # Agregaremos más si es necesario en etapas posteriores
