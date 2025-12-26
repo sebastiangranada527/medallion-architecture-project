@@ -138,4 +138,21 @@ Transición clara de rol Data Engineer a Data Scientist dentro del mismo pipelin
 
 Próximos pasos
 
-Etapa 5: Orquestación del pipeline completo con Apache Airflow y preparación para deployment en cloud (AWS/GCP free tier).
+Etapa 5: Orquestación del pipeline completo con scripts modulares y automatización Python (Orquestador Ligero para Mac).
+
+## Automatización y Despliegue (Etapa 5)
+
+En esta etapa hemos refactorizado toda la lógica de los notebooks a scripts de producción modulares y creado un orquestador automático.
+
+### Ejecutar todo el Pipeline con un solo comando:
+Simplemente corre el script maestro que se encargará de ejecutar (Bronze -> Silver -> Gold) en orden y reportar el estado:
+
+```bash
+python orchestrator.py
+```
+
+### Estructura de Deployment:
+*   `etapa5-deployment/scripts/bronze_ingest.py`: Ingesta de datos crudos.
+*   `etapa5-deployment/scripts/silver_transform.py`: Limpieza profunda y particionamiento.
+*   `etapa5-deployment/scripts/gold_aggregate.py`: Agregación de KPIs de negocio.
+*   `orchestrator.py`: Script maestro que automatiza el flujo completo.
